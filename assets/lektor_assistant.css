@@ -1,0 +1,23 @@
+:root {
+  --color-bg: hsl(0, 0%, 100%);
+  --color-text: hsl(0, 0%, 0%);
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  background-color: var(--color-bg);
+}
+
+main {
+  padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--color-bg);
+    background-color: var(--color-text);
+  }
+}

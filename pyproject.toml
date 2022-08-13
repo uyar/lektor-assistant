@@ -1,0 +1,71 @@
+[project]
+name = "lektor_assistant"
+version = "0.1.0"
+description = "Dashboard for Lektor."
+readme = "README.rst"
+
+authors = [{name = "H. Turgut Uyar", email = "uyar@tekir.org"}]
+license = {file = "LICENSE.txt"}
+
+keywords = ["lektor", "static site generator", "cms"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Web Environment",
+    "Framework :: Lektor",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Natural Language :: English",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Internet :: WWW/HTTP :: Site Management",
+]
+
+requires-python = ">=3.10"
+dependencies = [
+    "lektor>=3.3",
+    "pywebview[gtk]",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "flake8",
+    "flake8-isort",
+    "tox",
+]
+
+[project.scripts]
+lektor-assistant = "lektor_assistant:main"
+
+[project.urls]
+"Repository" = "https://github.com/uyar/lektor-assistant"
+
+[tool.isort]
+lines_after_imports = 2
+known_test = "pytest,unittest"
+sections = "TEST,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py{310}, style
+isolated_build = True
+
+[testenv]
+deps =
+    pytest
+commands =
+    pytest {posargs:tests}
+
+[testenv:style]
+deps =
+    flake8
+    flake8-isort
+commands =
+    flake8 lektor_assistant.py
+"""
+
+[build-system]
+requires = ["flit_core>=3.2"]
+build-backend = "flit_core.buildapi"
